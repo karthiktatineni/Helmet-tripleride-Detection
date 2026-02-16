@@ -1,0 +1,8 @@
+numpy
+pandas
+opencv-python
+tensorflow
+tf-keras
+yagmail
+openpyxl
+python-dotenv
