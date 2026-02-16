@@ -18,12 +18,17 @@ def loadLibraries(): #function to load yolov3 model weight and class labels
         class_labels = open('yolov3model/yolov3-labels').read().strip().split('\n') #reading labels from yolov3 model
         print(str(class_labels)+" == "+str(len(class_labels)))
         cnn_model = cv.dnn.readNetFromDarknet('yolov3model/yolov3.cfg', 'yolov3model/yolov3.weights') #reading model
+<<<<<<< HEAD
         out_layers = cnn_model.getUnconnectedOutLayers() #getting unconnected layers
         layer_names = cnn_model.getLayerNames() #getting all layers
         if isinstance(out_layers, np.ndarray) and out_layers.ndim > 1:
             cnn_layer_names = [layer_names[i[0] - 1] for i in out_layers]
         else:
             cnn_layer_names = [layer_names[i - 1] for i in out_layers]
+=======
+        cnn_layer_names = cnn_model.getLayerNames() #getting layers from cnn model
+        cnn_layer_names = [cnn_layer_names[i[0] - 1] for i in cnn_model.getUnconnectedOutLayers()] #assigning all layers
+>>>>>>> 3542dd834f606db02714badc54f44add821a203a
 
 def detectFromImage(imagename): #function to detect object from images
         #random colors to assign unique color to each label
@@ -34,7 +39,11 @@ def detectFromImage(imagename): #function to detect object from images
         except:
                 raise 'Invalid image path'
         finally:
+<<<<<<< HEAD
                 image, _, _ = detectObject(cnn_model, cnn_layer_names, image_height, image_width, image, label_colors, class_labels, 0)#calling detection function
+=======
+                image, _, _, _, _ = detectObject(cnn_model, cnn_layer_names, image_height, image_width, image, label_colors, class_labels,indexno)#calling detection function
+>>>>>>> 3542dd834f606db02714badc54f44add821a203a
                 displayImage(image,0)#display image with detected objects label
 
 def detectFromVideo(videoFile): #function to read objects from video
@@ -57,7 +66,11 @@ def detectFromVideo(videoFile): #function to read objects from video
                                 break
                         if frame_width is None or frame_height is None:
                                 frame_height, frame_width = frames.shape[:2] #detecting object from frame
+<<<<<<< HEAD
                         frames, _, _ = detectObject(cnn_model, cnn_layer_names, frame_height, frame_width, frames, label_colors, class_labels, indexno)
+=======
+                        frames, _, _, _, _ = detectObject(cnn_model, cnn_layer_names, frame_height, frame_width, frames, label_colors, class_labels,indexno)
+>>>>>>> 3542dd834f606db02714badc54f44add821a203a
                         #displayImage(frames,index)
                         #indexno = indexno + 1
                         print(indexno)

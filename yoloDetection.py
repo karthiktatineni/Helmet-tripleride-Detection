@@ -15,8 +15,12 @@ def detectObject(CNNnet, total_layer_names, image_height, image_width, image, na
         Boundingboxes, confidence_value, class_ids = listBoundingBoxes(cnn_outs_layer, image_height, image_width, 0.5)
         ids = cv.dnn.NMSBoxes(Boundingboxes, confidence_value, 0.5, 0.3)
         if Boundingboxes is None or confidence_value is None or ids is None or class_ids is None:
+<<<<<<< HEAD
            print("[ERROR] unable to draw boxes.")
            return image, 0, 0
+=======
+           raise '[ERROR] unable to draw boxes.'
+>>>>>>> 3542dd834f606db02714badc54f44add821a203a
         image,option,counter = labelsBoundingBoxes(image, Boundingboxes, confidence_value, class_ids, ids, name_colors, class_labels,indexno)
 
     return image,option, counter
@@ -69,7 +73,14 @@ def listBoundingBoxes(image, image_height, image_width, threshold_conf):
     return box_array, confidence_array, class_ids_array
 
 def displayImage(image,index):
+<<<<<<< HEAD
     cv.imshow("Final Image", image)
     cv.waitKey(1)
+=======
+    #cv.imwrite('bikes/'+str(index)+'.jpg',image)
+    #index = index + 1
+    cv.imshow("Final Image", image)
+    cv.waitKey(0)
+>>>>>>> 3542dd834f606db02714badc54f44add821a203a
 
 
